@@ -443,7 +443,7 @@ public class InteractionManager : MonoBehaviour, IEndDragHandler, IBeginDragHand
 
                 if(rtf.parent.name!="智能家居")
                 {
-                    rtf.DOSizeDelta(new Vector2(538f, 119f), 0.5f).OnComplete(() => {
+                    rtf.DOSizeDelta(new Vector2(538f, 119f), 0.05f).OnComplete(() => {
 
                         foreach (var item in temps)
                         {
@@ -485,7 +485,7 @@ public class InteractionManager : MonoBehaviour, IEndDragHandler, IBeginDragHand
                     {
                         if(item.transform.parent.name!="智能家居")
                         {
-                            rtf.DOSizeDelta(new Vector2(145f, 119f), 0.35f).SetDelay(0.35f);
+                            rtf.DOSizeDelta(new Vector2(538f, 119f), 0.05f);
                         }
                         
                     };
@@ -642,18 +642,20 @@ public class InteractionManager : MonoBehaviour, IEndDragHandler, IBeginDragHand
                 }
             }
             index++;
-
+            Debug.Log(index+"  temp "+ temp);
             if (index >= childs.Count)
             {
                 foreach (var item in childs)
                 {
-                    item.sizeDelta = new Vector2(0f, 81f);
+                    item.DOKill();
+                    item.DOSizeDelta(new Vector2(0f, 81f), 0.1f);
                 }
-
+                Debug.Log("重置");
                 index = 0;
+                temp = 0;
             }
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
         }
 
     }
