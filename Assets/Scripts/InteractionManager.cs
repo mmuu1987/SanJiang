@@ -112,6 +112,8 @@ public class InteractionManager : MonoBehaviour, IEndDragHandler, IBeginDragHand
         滨江智慧Button.onClick.AddListener((() =>
         {
             if (_tween != null) return;
+
+            
             _dragTransforms = GetChild(滨江智慧Parent);
 
             _curActiveTf = _dragTransforms[0];
@@ -293,6 +295,7 @@ public class InteractionManager : MonoBehaviour, IEndDragHandler, IBeginDragHand
             {
                 item.onClick.AddListener(() => {
                     if (_tween != null) return;
+                    if(_curActiveTf.name=="智能家居")return;
                     滨江智慧Button.onClick.Invoke();
                     滨江健康Parent.gameObject.SetActive(false);
                     滨江邻里Parent.gameObject.SetActive(false);
